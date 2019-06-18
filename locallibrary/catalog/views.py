@@ -38,3 +38,18 @@ def index(request):
     # in the context variable
     return render(request, 'index.html', context=context)
 
+from django.views import generic
+
+class BookListView(generic.ListView):
+    model = Book
+    # your own name for the list as a template variable
+    context_object_name = 'my_book_list'
+    # get 5 books containing the title war
+    queryset = Book.objects.filter(title__icontains='war')[:5]
+    # specify your own template name/location
+    template_name = 'books/my_arbitrary_template_name_list.html'
+    
+class BookDetailView(generic.DetailView):
+    model = Book
+
+
