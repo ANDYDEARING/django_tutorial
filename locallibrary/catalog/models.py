@@ -24,6 +24,9 @@ class Book(models.Model):
     author = models.ForeignKey('Author', on_delete=models.SET_NULL,
      null=True)
 
+    language = models.ForeignKey('Language', on_delete=models.SET_NULL,
+     null=True)
+
     summary = models.TextField(max_length=1000,
      help_text='Enter a brief description of the book')
 
@@ -88,6 +91,13 @@ class BookInstance(models.Model):
     def __str__(self):
         """String for representing the Model object."""
         return f'{self.id} ({self.book.title})'
+
+class Language(models.Model):
+    """Model representing a language"""
+    language = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f'{self.language}'
 
 class Author(models.Model):
     """Model representing an author."""
