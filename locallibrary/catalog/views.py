@@ -75,5 +75,5 @@ class AllBorrowedBooksView(LoginRequiredMixin,generic.ListView):
     template_name = 'catalog/all_borrowed_books.html'
 
     def get_queryset(self):
-        return BookInstance.objects.filter(status__exact='o'),order_by('due_back')
+        return BookInstance.objects.filter(status__exact='o').order_by('due_back')
 
